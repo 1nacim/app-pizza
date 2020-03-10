@@ -1,0 +1,5 @@
+easy_admin:
+    site_name: '<em style="font-size: 100%;">AppPizza</em>'
+    entities:
+        # List the entity class name you want to manage
+        - App\Entity\Pizza
