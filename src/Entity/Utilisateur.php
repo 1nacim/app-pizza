@@ -33,6 +33,22 @@ class Utilisateur implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=40)
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="string", length=40)
+     */
+    private $nom;
+
+    /**
+     * Nom est prenom associés
+     * @var string
+     */
+    private $nomPrenomComplet;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -109,5 +125,46 @@ class Utilisateur implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNomPrenomComplet(): string
+    {
+        $this->nomPrenomComplet = $this->prenom . ' ' . $this->nom;
+        return $this->nomPrenomComplet;
+    }
+
+    /**
+     * @param string $nomPrenomComplet
+     */
+    public function setNomPrenomComplet(string $nomPrenomComplet): void
+    {
+        $this->nomPrenomComplet = $nomPrenomComplet;
     }
 }
