@@ -23,7 +23,7 @@ class UtilisateurAdminController extends EasyAdminController
     /**
      * @param $user
      */
-    public function persistUserEntity($user)
+    public function persistEntity($user)
     {
         $this->updatePassword($user);
         parent::persistEntity($user);
@@ -32,7 +32,7 @@ class UtilisateurAdminController extends EasyAdminController
     /**
      * @param $user
      */
-    public function updateUserEntity($user)
+    public function updateEntity($user)
     {
         $this->updatePassword($user);
         parent::updateEntity($user);
