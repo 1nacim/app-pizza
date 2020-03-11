@@ -49,6 +49,12 @@ class Utilisateur implements UserInterface
      */
     private $nomPrenomComplet;
 
+    /**
+     * Mot de passe en clair
+     * @var string
+     */
+    private $plainPassword;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -166,5 +172,21 @@ class Utilisateur implements UserInterface
     public function setNomPrenomComplet(string $nomPrenomComplet): void
     {
         $this->nomPrenomComplet = $nomPrenomComplet;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string $plainPassword
+     */
+    public function setPlainPassword(string $plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
     }
 }

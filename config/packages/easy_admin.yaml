@@ -3,5 +3,16 @@ easy_admin:
     user:
         name_property_path: 'nomPrenomComplet'
     entities:
-        # List the entity class name you want to manage
-        - App\Entity\Pizza
+        Pizza:
+            class: App\Entity\Pizza
+            label: 'Gestion des pizzas'
+        Utilisateur:
+            class: App\Entity\Utilisateur
+            label: 'Gestion des utilisateurs'
+            controller: App\Controller\Admin\Utilisateur\UtilisateurAdminController
+            form:
+                fields:
+                    - { property: 'email' }
+                    - { property: 'plainPassword', type: 'password', label: 'Mot de passe', type_options: { required: false }}
+                    - { property: 'prenom' }
+                    - { property: 'nom' }
