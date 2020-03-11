@@ -14,6 +14,8 @@ class ListePizzaController extends AbstractController
         $pizzaRepository = $em->getRepository('App:Pizza');
         $pizzas = $pizzaRepository->findAll();
 
+        /** @TODO Céation de la page de login admin - https://symfony.com/doc/current/security.html#firewalls-authentication */
+
         return $this->render(
             'front/list_pizza/index.html.twig',
             [
