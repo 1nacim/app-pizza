@@ -5,10 +5,8 @@ easy_admin:
     entities:
         Pizza:
             class: App\Entity\Pizza
-            label: 'Gestion des pizzas'
         Utilisateur:
             class: App\Entity\Utilisateur
-            label: 'Gestion des utilisateurs'
             controller: App\Controller\Admin\Utilisateur\UtilisateurAdminController
             form:
                 fields:
@@ -16,3 +14,4 @@ easy_admin:
                     - { property: 'plainPassword', type: 'password', label: 'Mot de passe', type_options: { required: false }}
                     - { property: 'prenom' }
                     - { property: 'nom' }
+                    - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'Utilisateur': 'ROLE_USER', 'Admininistrateur': 'ROLE_ADMIN' } }}
