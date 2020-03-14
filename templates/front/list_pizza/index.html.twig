@@ -12,7 +12,7 @@
         <ul class="navbar-nav ml-auto">
 
             <li class="nav-item active">
-                <a class="nav-link" href="#"><div class="btn btn-outline-primary">Pannier <i class="fa fa-shopping-basket" aria-hidden="true"></i></div></a>
+                <a class="nav-link" href="#"><div class="btn btn-outline-primary">Pannier <u><span id="cart-items"></span></u> <i class="fa fa-shopping-basket" aria-hidden="true"></i></div></a>
             </li>
         </ul>
     </div>
@@ -35,11 +35,30 @@
                         <li>{{ ingredient }}</li>
                         {% endfor %}
                     </ul>
-                    <a href="#" class="btn btn-block btn-primary">Ajouter au panier</a>
+                    <a href="#" class="btn btn-block btn-primary" id="pizza-id" data-param="{{ pizza.id }}">Ajouter au panier</a>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+    $(document).on('click', '#pizza-id', function () {
+        $.post("{{ path('front_ajouter_pizza_au_panier') }}" , {
+            id: ($(this).attr('data-param'))
+        },
+        function() {
+            let cart = $("#cart-items");
+            if (cart.text().length > 0) {
+                cart.text(parseInt(cart.text()) + 1);
+            } else {
+                cart.text(1);
+            }
+        });
+    });
+</script>
 {% endblock %}
