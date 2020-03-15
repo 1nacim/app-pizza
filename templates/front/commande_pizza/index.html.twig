@@ -1,6 +1,6 @@
 {% extends 'front/template.html.twig' %}
 
-{% block title %}{{ parent() }} - Bienvenue{% endblock %}
+{% block title %}{{ parent() }} - Récapitulatif de la commande{% endblock %}
 
 {% block body %}
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -14,7 +14,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ path('front_commande_pizza_recapitulatif') }}">
                         <div class="btn btn-outline-primary">
-                            Panier
+                            Panier :
                             <span id="cart-items">
                             {% if app.request.cookies.get('nbPizzas') %}
                                 {{ app.request.cookies.get('nbPizzas') }}
@@ -62,9 +62,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12">
+            <div class="col-6">
                 <a href="{{ path('front_commande_pizza_vider_panier') }}">Vider le panier</a>
             </div>
+            <div class="col-6 d-flex justify-content-end"><a href="{{ path('front_commande_pizza_infos_client') }}" class="btn btn-primary">Valider et continuer</a></div>
         </div>
     </div>
 {% endblock %}

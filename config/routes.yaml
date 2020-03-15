@@ -22,3 +22,7 @@ front_commande_pizza_recapitulatif:
 front_commande_pizza_vider_panier:
     path: /commande/vider-panier
     controller: App\Controller\Front\CommandePizzaController::viderPanier
+
+front_commande_pizza_infos_client:
+    path: /commande/commander
+    controller: App\Controller\Front\CommandePizzaController::commander

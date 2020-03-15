@@ -3,6 +3,7 @@
 namespace App\Controller\Front;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -74,6 +75,10 @@ class CommandePizzaController extends AbstractController
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function viderPanier(Request $request)
     {
         $response = new Response();
@@ -81,5 +86,17 @@ class CommandePizzaController extends AbstractController
         $response->headers->clearCookie('nbPizzas');
         $response->sendHeaders();
         return $this->redirectToRoute('front_liste_pizza_index');
+    }
+
+    public function commander()
+    {
+        // Démarrage des sessions
+        $session = new Session();
+        $session->start();
+
+        // Récupération du tableau de récapitulatif de la commande en session
+        $commande = unserialize($session->get('recapitulatif'));
+
+        return $this->render('front/commande_pizza/informations-client.html.twig');
     }
 }
