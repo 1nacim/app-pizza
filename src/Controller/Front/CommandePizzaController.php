@@ -97,6 +97,6 @@ class CommandePizzaController extends AbstractController
         // Récupération du tableau de récapitulatif de la commande en session
         $commande = unserialize($session->get('recapitulatif'));
 
-        return $this->render('front/commande_pizza/informations-client.html.twig');
+        return $this->render('front/commande_pizza/commander.html.twig');
     }
 }

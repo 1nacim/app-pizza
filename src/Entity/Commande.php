@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PizzaRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\CommandeRepository")
  */
-class Pizza
+class Commande
 {
     /**
      * @ORM\Id()
@@ -19,27 +19,29 @@ class Pizza
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Adresse", inversedBy="commandes")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $nom;
+    private $adresse;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="commandes")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $ingredients = [];
+    private $client;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="boolean")
      */
-    private $urlMiniature;
+    private $etatCommande;
 
     /**
      * @ORM\Column(type="float")
      */
-    private $prix;
+    private $prixTotal;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\LigneDeCommande", mappedBy="pizza")
+     * @ORM\OneToMany(targetEntity="App\Entity\LigneDeCommande", mappedBy="commande")
      */
     private $ligneDeCommandes;
 
@@ -53,50 +55,50 @@ class Pizza
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getAdresse(): ?Adresse
     {
-        return $this->nom;
+        return $this->adresse;
     }
 
-    public function setNom(string $nom): self
+    public function setAdresse(?Adresse $adresse): self
     {
-        $this->nom = $nom;
+        $this->adresse = $adresse;
 
         return $this;
     }
 
-    public function getIngredients(): ?array
+    public function getClient(): ?Client
     {
-        return $this->ingredients;
+        return $this->client;
     }
 
-    public function setIngredients(array $ingredients): self
+    public function setClient(?Client $client): self
     {
-        $this->ingredients = $ingredients;
+        $this->client = $client;
 
         return $this;
     }
 
-    public function getUrlMiniature(): ?string
+    public function getEtatCommande(): ?bool
     {
-        return $this->urlMiniature;
+        return $this->etatCommande;
     }
 
-    public function setUrlMiniature(string $urlMiniature): self
+    public function setEtatCommande(bool $etatCommande): self
     {
-        $this->urlMiniature = $urlMiniature;
+        $this->etatCommande = $etatCommande;
 
         return $this;
     }
 
-    public function getPrix(): ?float
+    public function getPrixTotal(): ?float
     {
-        return $this->prix;
+        return $this->prixTotal;
     }
 
-    public function setPrix(float $prix): self
+    public function setPrixTotal(float $prixTotal): self
     {
-        $this->prix = $prix;
+        $this->prixTotal = $prixTotal;
 
         return $this;
     }
@@ -113,7 +115,7 @@ class Pizza
     {
         if (!$this->ligneDeCommandes->contains($ligneDeCommande)) {
             $this->ligneDeCommandes[] = $ligneDeCommande;
-            $ligneDeCommande->setPizza($this);
+            $ligneDeCommande->setCommande($this);
         }
 
         return $this;
@@ -124,8 +126,8 @@ class Pizza
         if ($this->ligneDeCommandes->contains($ligneDeCommande)) {
             $this->ligneDeCommandes->removeElement($ligneDeCommande);
             // set the owning side to null (unless already changed)
-            if ($ligneDeCommande->getPizza() === $this) {
-                $ligneDeCommande->setPizza(null);
+            if ($ligneDeCommande->getCommande() === $this) {
+                $ligneDeCommande->setCommande(null);
             }
         }
 
