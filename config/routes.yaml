@@ -14,3 +14,11 @@ front_ajouter_pizza_au_panier:
     path: /ajouter-pizza-au-panier
     controller: App\Controller\Front\ListePizzaController::ajouterPizzaAuPanier
     methods: POST
+
+front_commande_pizza_recapitulatif:
+    path: /commande/recapitulatif
+    controller: App\Controller\Front\CommandePizzaController::recapitulatif
+
+front_commande_pizza_vider_panier:
+    path: /commande/vider-panier
+    controller: App\Controller\Front\CommandePizzaController::viderPanier

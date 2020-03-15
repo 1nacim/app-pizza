@@ -4,13 +4,8 @@ namespace App\Controller\Front;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Cookie;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 /**
  * Class ListePizzaController
@@ -50,7 +45,7 @@ class ListePizzaController extends AbstractController
 
             $response = new Response();
 
-            /**
+            /*
              * Vérifie si le cookie "idPizzas" existe
              * - S'il n'existe pas, on initialise un tableau et on lui passe une valeur, l'ID de la pizza ajoutée au panier
              * - S'il existe, on récupère son contenu est on ajoute au tableau l'ID de la pizza ajoutée au panier

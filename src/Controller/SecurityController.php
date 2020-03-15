@@ -7,17 +7,26 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+/**
+ * Class SecurityController
+ * @package App\Controller
+ */
 class SecurityController extends AbstractController
 {
+    /**
+     * @param AuthenticationUtils $authenticationUtils
+     * @return Response
+     */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+        // Vérifie si le visiteur n'est pas déjà connecté, si c'est le cas, redirection vers l'index de l'administration
         if ($this->getUser()) {
             return $this->redirectToRoute('easyadmin');
         }
 
-        // get the login error if there is one
+        // Récupération des erreurs d'authentification s'il y en a
         $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
+        // Récupération du dernier email entré par le visiteur
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
