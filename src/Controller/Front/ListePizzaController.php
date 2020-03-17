@@ -14,9 +14,11 @@ use Symfony\Component\HttpFoundation\Response;
 class ListePizzaController extends AbstractController
 {
     /**
+     * Méthode permettant d'afficher l'index qui n'est autre que la liste des pizzas
+     *
      * @return Response
      */
-    public function index()
+    public function index(): Response
     {
         $em = $this->getDoctrine()->getManager();
         $pizzaRepository = $em->getRepository('App:Pizza');
@@ -33,10 +35,12 @@ class ListePizzaController extends AbstractController
     }
 
     /**
+     * Méthode permettant d'ajouter un article (une pizza) au panier
+     *
      * @param Request $request
      * @return Response
      */
-    public function ajouterPizzaAuPanier(Request $request)
+    public function ajouterPizzaAuPanier(Request $request): Response
     {
         // Traitement uniquement si la méthode HTTP envoyée est de type POST
         if ($request->isMethod('POST')) {
@@ -60,7 +64,7 @@ class ListePizzaController extends AbstractController
                 $idPizzas[] = $idPizza;
             }
 
-            // Création/Recréation du cookie "idPizzas" avec en valeur le tableau sérialisé contenant les IDs de pizzas
+            // Création/Recréation du cookie "idPizzas" avec en valeur le tableau sérialisé contenant les IDs de pizzas (durée de vie: 1 journée)
             $cookie = new Cookie(
                 'idPizzas',
                 serialize($idPizzas),

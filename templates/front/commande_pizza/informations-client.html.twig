@@ -33,6 +33,32 @@
         <div class="row mt-3">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <h1>Commander</h1>
+                <div class="jumbotron">
+                    <h1 class="display-4" style="font-size: 2.5rem">Informations client</h1><br />
+                    {{ form_start(clientForm) }}
+                    <div class="form-row">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                            {{ form_label(clientForm.adresseMail) }}
+                            {{ form_widget(clientForm.adresseMail) }}
+                        </div>
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                            {{ form_label(clientForm.numeroTel) }}
+                            {{ form_widget(clientForm.numeroTel) }}
+                        </div>
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                            {{ form_label(clientForm.nom) }}
+                            {{ form_widget(clientForm.nom) }}
+                        </div>
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                            {{ form_label(clientForm.prenom) }}
+                            {{ form_widget(clientForm.prenom) }}
+                        </div>
+                        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            {{ form_widget(clientForm.submit) }}
+                        </div>
+                    </div>
+                    {{ form_end(clientForm) }}
+                </div>
             </div>
         </div>
         <div class="row mt-3">

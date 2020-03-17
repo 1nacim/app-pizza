@@ -100,35 +100,4 @@ class Pizza
 
         return $this;
     }
-
-    /**
-     * @return Collection|LigneDeCommande[]
-     */
-    public function getLigneDeCommandes(): Collection
-    {
-        return $this->ligneDeCommandes;
-    }
-
-    public function addLigneDeCommande(LigneDeCommande $ligneDeCommande): self
-    {
-        if (!$this->ligneDeCommandes->contains($ligneDeCommande)) {
-            $this->ligneDeCommandes[] = $ligneDeCommande;
-            $ligneDeCommande->setPizza($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLigneDeCommande(LigneDeCommande $ligneDeCommande): self
-    {
-        if ($this->ligneDeCommandes->contains($ligneDeCommande)) {
-            $this->ligneDeCommandes->removeElement($ligneDeCommande);
-            // set the owning side to null (unless already changed)
-            if ($ligneDeCommande->getPizza() === $this) {
-                $ligneDeCommande->setPizza(null);
-            }
-        }
-
-        return $this;
-    }
 }

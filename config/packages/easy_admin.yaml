@@ -3,15 +3,25 @@ easy_admin:
     user:
         name_property_path: 'nomPrenomComplet'
     entities:
-        Pizza:
-            class: App\Entity\Pizza
         Utilisateur:
             class: App\Entity\Utilisateur
             controller: App\Controller\Admin\Utilisateur\UtilisateurAdminController
             form:
+                title: 'Ajouter/modifier un utilisateur'
                 fields:
                     - { property: 'email' }
                     - { property: 'plainPassword', type: 'password', label: 'Mot de passe', type_options: { required: false }}
                     - { property: 'prenom' }
                     - { property: 'nom' }
                     - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'Utilisateur': 'ROLE_USER', 'Admininistrateur': 'ROLE_ADMIN' } }}
+        Pizza:
+            class: App\Entity\Pizza
+            list:
+                fields: ['id', 'nom', 'ingredients', 'urlMiniature', 'prix']
+            form:
+                title: 'Ajouter/modifier une pizza'
+                fields:
+                    - { property: 'nom' }
+                    - { property: 'ingredients' }
+                    - { property: 'urlMiniature' }
+                    - { property: 'prix' }

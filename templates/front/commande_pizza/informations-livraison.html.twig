@@ -1,0 +1,74 @@
+{% extends 'front/template.html.twig' %}
+
+{% block title %}{{ parent() }} - Commander{% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="{{ path('front_liste_pizza_index') }}">AppPizza... <em style="font-size: 80%;">Les pizzas à la mode du pilat</em></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('front_commande_pizza_recapitulatif') }}">
+                        <div class="btn btn-outline-primary">
+                            Panier :
+                            <span id="cart-items">
+                            {% if app.request.cookies.get('nbPizzas') %}
+                                {{ app.request.cookies.get('nbPizzas') }}
+                            {% else %}
+                                vide
+                            {% endif %}
+                        </span>
+                            <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <h1>Commander</h1>
+                <div class="jumbotron">
+                    <h1 class="display-4" style="font-size: 2.5rem">Informations livraison</h1><br />
+                    {{ form_start(adresseForm) }}
+                    <div class="form-row">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                            {{ form_label(adresseForm.numeroRue) }}
+                            {{ form_widget(adresseForm.numeroRue) }}
+                        </div>
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                            {{ form_label(adresseForm.rue) }}
+                            {{ form_widget(adresseForm.rue) }}
+                        </div>
+                        <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                            {{ form_label(adresseForm.quartier) }}
+                            {{ form_widget(adresseForm.quartier) }}
+                        </div>
+                        <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                            {{ form_label(adresseForm.ville) }}
+                            {{ form_widget(adresseForm.ville) }}
+                        </div>
+                        <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                            {{ form_label(adresseForm.codePostal) }}
+                            {{ form_widget(adresseForm.codePostal) }}
+                        </div>
+                        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            {{ form_widget(adresseForm.submit) }}
+                        </div>
+                    </div>
+                    {{ form_end(adresseForm) }}
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -117,35 +117,4 @@ class Adresse
 
         return $this;
     }
-
-    /**
-     * @return Collection|Commande[]
-     */
-    public function getCommandes(): Collection
-    {
-        return $this->commandes;
-    }
-
-    public function addCommande(Commande $commande): self
-    {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes[] = $commande;
-            $commande->setAdresse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommande(Commande $commande): self
-    {
-        if ($this->commandes->contains($commande)) {
-            $this->commandes->removeElement($commande);
-            // set the owning side to null (unless already changed)
-            if ($commande->getAdresse() === $this) {
-                $commande->setAdresse(null);
-            }
-        }
-
-        return $this;
-    }
 }

@@ -45,6 +45,11 @@ class Commande
      */
     private $ligneDeCommandes;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateCreation;
+
     public function __construct()
     {
         $this->ligneDeCommandes = new ArrayCollection();
@@ -130,6 +135,18 @@ class Commande
                 $ligneDeCommande->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->dateCreation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $dateCreation): self
+    {
+        $this->dateCreation = $dateCreation;
 
         return $this;
     }

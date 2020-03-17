@@ -24,5 +24,13 @@ front_commande_pizza_vider_panier:
     controller: App\Controller\Front\CommandePizzaController::viderPanier
 
 front_commande_pizza_infos_client:
-    path: /commande/commander
-    controller: App\Controller\Front\CommandePizzaController::commander
+    path: /commande/informations-clients
+    controller: App\Controller\Front\CommandePizzaController::informationsClient
+
+front_commande_pizza_infos_livraison:
+    path: /commande/informations-livraison
+    controller: App\Controller\Front\CommandePizzaController::informationsLivraison
+
+front_commande_pizza_termine:
+    path: /commande/termine
+    controller: App\Controller\Front\CommandePizzaController::termine
